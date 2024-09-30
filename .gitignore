@@ -5,4 +5,4 @@ variables.tf
 .terraform*
 LICENSE.txt
 terraform-provider*
-
+*.yaml
