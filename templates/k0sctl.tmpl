@@ -1,0 +1,14 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: MKEvirt-cluster
+spec:
+  hosts:
+%{ for host in hosts ~}
+  - ssh:
+      address: ${host.address}
+      user: ${host.user}
+      port: ${host.port}
+      keyPath: ${host.keyPath}
+    role: ${host.role}
+%{ endfor ~}

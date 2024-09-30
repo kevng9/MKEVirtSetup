@@ -1,0 +1,8 @@
+k0sctl-config.yaml
+.DS_Store
+*.tfstate*
+variables.tf
+.terraform*
+LICENSE.txt
+terraform-provider*
+
