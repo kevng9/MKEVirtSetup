@@ -1,4 +1,4 @@
-variable "demo-parameters"{
+/*variable "demo-parameters"{
     description = "Global parameters for demo"
     type = object({
         name          = string
@@ -22,8 +22,8 @@ variable "demo-parameters"{
     }
 }
 
-variable "instances" {
-  description = "Map of instances with specific configurations"
+variable "k0s_instances" {
+  description = "Configurations for k0s cluster"
   type = map(object({
     instance_type = string
     name          = string
@@ -42,17 +42,19 @@ variable "instances" {
       name          = "k0s-controller"
       role          = "controller"
       storage = {
-        volume_size = 20
+        volume_size = 30
         volume_type = "gp2"
+        delete_on_termination = true
       }
     },
     "instance2" = {
-      instance_type = "c5n.metal"
+      instance_type = "c5n.metal"             # need bare metal for virtualization
       name          = "kubevirt-worker"
       role          = "worker"
       storage = {
-        volume_size = 50
+        volume_size = 80
         volume_type = "gp2"
+        delete_on_termination = true
       }
     },
     "instance3" = {
@@ -60,9 +62,60 @@ variable "instances" {
       name          = "k0s-worker"
       role          = "worker"
       storage = {
-        volume_size = 20
+        volume_size = 30
         volume_type = "gp2"
+        delete_on_termination = true
       }
     }
   }
 }
+
+
+variable "mke3_instances" {
+  description = "Configurations for MKE3.X cluster"
+  type = map(object({
+    instance_type = string
+    name          = string
+    role          = string
+    storage = object({
+      volume_size           = number
+      volume_type           = string
+      delete_on_termination = optional(bool)
+      iops                  = optional(number)
+      throughput            = optional(number)
+    })
+  }))
+  default = {
+    "instance1" = {
+      instance_type = "c4.2xlarge"
+      name          = "mke-controller"
+      role          = "manager"
+      storage = {
+        volume_size = 80
+        volume_type = "gp2"
+        delete_on_termination = true
+      }
+    },
+    "instance2" = {
+      instance_type = "c5n.metal"             # need bare metal for virtualization
+      name          = "kubevirt-worker"
+      role          = "worker"
+      storage = {
+        volume_size = 80
+        volume_type = "gp2"
+        delete_on_termination = true
+      }
+    },
+    "instance3" = {
+      instance_type = "c4.2xlarge"
+      name          = "mke-worker"
+      role          = "worker"
+      storage = {
+        volume_size = 80
+        volume_type = "gp2"
+        delete_on_termination = true
+      }
+    }
+  }
+}
+*/
