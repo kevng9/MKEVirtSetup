@@ -4,7 +4,9 @@ MKEVirtSetup is a Terraform script designed to set up an AWS environment for dem
 
 ### To create environment
 `terraform init`
+
 `terraform validate`
+
 `terraform apply`
 
 ### To create k0sctl config file
