@@ -5,4 +5,5 @@ variables.tf
 .terraform*
 LICENSE.txt
 terraform-provider*
-*.yaml
+launchpad.yaml
+k0sctl.yaml

@@ -16,6 +16,9 @@ spec:
     imageRepo: docker.io/mirantis
     adminUsername: admin
     adminPassword: passw0rd!
+    configData: |-
+      [scheduling_configuration]
+        default_node_orchestrator = "kubernetes"
   mcr:
     version: 23.0.15
     repoURL: https://repos.mirantis.com
