@@ -1,0 +1,44 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: ubuntu
+  labels:
+    special: key
+spec:
+  runStrategy: Always
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      domain:
+        devices:
+          disks:
+          - disk:
+              bus: virtio
+            name: containerdisk
+          - disk:
+              bus: virtio
+            name: cloudinit
+          rng: {}
+          interfaces:
+            - name: default
+              masquerade: {}
+        resources:
+          requests:
+            memory: 1Gi 
+      networks: 
+        - name: default
+          pod: {}
+      terminationGracePeriodSeconds: 180
+      volumes:
+      - containerDisk:
+          image: quay.io/containerdisks/ubuntu:22.04
+        name: containerdisk
+      - cloudInitNoCloud:
+          userData: |-
+            #cloud-config
+            # *Update username and password here*
+            user: user  
+            password: pass
+        name: cloudinit
+status: {}
