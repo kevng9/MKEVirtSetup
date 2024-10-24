@@ -15,5 +15,8 @@ MKEVirtSetup is a Terraform script designed to set up an AWS environment for dem
 ### To create launchpad config file
 `terraform output -raw launchpad_config > launchpad.yaml`
 
+### Installing kubevirt
+[https://docs.mirantis.com/mke/3.7/ops/mke-virtualization/deploy-kubevirt.html](https://docs.mirantis.com/mke/3.7/ops/mke-virtualization/deploy-kubevirt.html)
+
 ### To clean up environment
 `terraform destroy`
